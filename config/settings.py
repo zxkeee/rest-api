@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
 
@@ -139,3 +139,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8001',
     'http://127.0.0.1:8001',
 ]
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'catalog.errors.custom_exception_handler',
+}
