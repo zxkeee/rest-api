@@ -63,7 +63,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Python\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"JavaScript\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"TypeScript\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Rust\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Go\"\n    }\n]"
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Python\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"JavaScript\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"TypeScript\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Rust\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Go\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Java\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"C++\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"C#\"\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Ruby\"\n    },\n    {\n        \"id\": 10,\n        \"name\": \"PHP\"\n    },\n    {\n        \"id\": 11,\n        \"name\": \"Dart\"\n    }\n]"
             }
           ]
         },
@@ -151,7 +151,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 6,\n    \"name\": \"Kotlin\"\n}"
+              "body": "{\n    \"id\": 12,\n    \"name\": \"Kotlin\"\n}"
             }
           ]
         },
@@ -212,7 +212,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 6,\n    \"name\": \"Kotlin\"\n}"
+              "body": "{\n    \"id\": 12,\n    \"name\": \"Kotlin\"\n}"
             }
           ]
         },
@@ -301,7 +301,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 6,\n    \"name\": \"Kotlin JVM\"\n}"
+              "body": "{\n    \"id\": 12,\n    \"name\": \"Kotlin JVM\"\n}"
             }
           ]
         },
@@ -527,7 +527,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити мову «Python», оскільки її використовують 3 проєкти. Спочатку приберіть цю мову з проєктів.\",\n    \"errors\": null\n}"
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити мову «Python», оскільки її використовують 6 проєктів. Спочатку приберіть цю мову з проєктів.\",\n    \"errors\": null\n}"
             }
           ]
         }
@@ -591,7 +591,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Django Software Foundation\",\n        \"github_url\": \"https://github.com/django\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Python Software Foundation\",\n        \"github_url\": \"https://github.com/python\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Microsoft\",\n        \"github_url\": \"https://github.com/microsoft\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Mozilla\",\n        \"github_url\": \"https://github.com/mozilla\"\n    }\n]"
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Django Software Foundation\",\n        \"github_url\": \"https://github.com/django\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Python Software Foundation\",\n        \"github_url\": \"https://github.com/python\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Microsoft\",\n        \"github_url\": \"https://github.com/microsoft\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Mozilla\",\n        \"github_url\": \"https://github.com/mozilla\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Meta\",\n        \"github_url\": \"https://github.com/facebook\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Google\",\n        \"github_url\": \"https://github.com/google\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"The Go Authors\",\n        \"github_url\": \"https://github.com/golang\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Rust Foundation\",\n        \"github_url\": \"https://github.com/rust-lang\"\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Vercel\",\n        \"github_url\": \"https://github.com/vercel\"\n    },\n    {\n        \"id\": 10,\n        \"name\": \"Ruby on Rails\",\n        \"github_url\": \"https://github.com/rails\"\n    },\n    {\n        \"id\": 11,\n        \"name\": \"Flutter\",\n        \"github_url\": \"https://github.com/flutter\"\n    },\n    {\n        \"id\": 12,\n        \"name\": \"Laravel\",\n        \"github_url\": \"https://github.com/laravel\"\n    },\n    {\n        \"id\": 13,\n        \"name\": \"freeCodeCamp\",\n        \"github_url\": \"https://github.com/freeCodeCamp\"\n    },\n    {\n        \"id\": 14,\n        \"name\": \"Home Assistant\",\n        \"github_url\": \"https://github.com/home-assistant\"\n    }\n]"
             }
           ]
         },
@@ -750,7 +750,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 5,\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
+              "body": "{\n    \"id\": 15,\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
             }
           ]
         },
@@ -811,7 +811,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 5,\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
+              "body": "{\n    \"id\": 15,\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
             }
           ]
         },
@@ -900,7 +900,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 5,\n    \"name\": \"Pallets Projects\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
+              "body": "{\n    \"id\": 15,\n    \"name\": \"Pallets Projects\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
             }
           ]
         },
@@ -1257,7 +1257,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити організацію «Microsoft», оскільки за нею закріплено 2 проєкти. Спочатку видаліть ці проєкти або перенесіть їх в іншу організацію.\",\n    \"errors\": null\n}"
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити організацію «Microsoft», оскільки за нею закріплено 4 проєкти. Спочатку видаліть ці проєкти або перенесіть їх в іншу організацію.\",\n    \"errors\": null\n}"
             }
           ]
         }
@@ -1321,7 +1321,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 1,\n        \"full_name\": \"Felix Kling\",\n        \"github_username\": \"fkling\"\n    },\n    {\n        \"id\": 2,\n        \"full_name\": \"Sarah Boyce\",\n        \"github_username\": \"sarahboyce\"\n    },\n    {\n        \"id\": 3,\n        \"full_name\": \"Hugo van Kemenade\",\n        \"github_username\": \"hugovk\"\n    },\n    {\n        \"id\": 4,\n        \"full_name\": \"Ivan Petrenko\",\n        \"github_username\": \"ivan-petrenko\"\n    }\n]"
+              "body": "[\n    {\n        \"id\": 1,\n        \"full_name\": \"Felix Kling\",\n        \"github_username\": \"fkling\"\n    },\n    {\n        \"id\": 2,\n        \"full_name\": \"Sarah Boyce\",\n        \"github_username\": \"sarahboyce\"\n    },\n    {\n        \"id\": 3,\n        \"full_name\": \"Hugo van Kemenade\",\n        \"github_username\": \"hugovk\"\n    },\n    {\n        \"id\": 4,\n        \"full_name\": \"Ivan Petrenko\",\n        \"github_username\": \"ivan-petrenko\"\n    },\n    {\n        \"id\": 5,\n        \"full_name\": \"Olena Koval\",\n        \"github_username\": \"olena-koval\"\n    },\n    {\n        \"id\": 6,\n        \"full_name\": \"Andrii Melnyk\",\n        \"github_username\": \"amelnyk-dev\"\n    },\n    {\n        \"id\": 7,\n        \"full_name\": \"Mariia Shevchuk\",\n        \"github_username\": \"mshevchuk\"\n    },\n    {\n        \"id\": 8,\n        \"full_name\": \"Taras Bondar\",\n        \"github_username\": \"tbondar\"\n    }\n]"
             }
           ]
         },
@@ -1480,7 +1480,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 5,\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}"
+              "body": "{\n    \"id\": 9,\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}"
             }
           ]
         },
@@ -1541,7 +1541,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 5,\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}"
+              "body": "{\n    \"id\": 9,\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}"
             }
           ]
         },
@@ -1630,7 +1630,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 5,\n    \"full_name\": \"David Lord Jr.\",\n    \"github_username\": \"davidism\"\n}"
+              "body": "{\n    \"id\": 9,\n    \"full_name\": \"David Lord Jr.\",\n    \"github_username\": \"davidism\"\n}"
             }
           ]
         },
@@ -1693,7 +1693,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
+              "body": "[\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 19,\n        \"name\": \"TypeScript\",\n        \"description\": \"JavaScript with syntax for types.\",\n        \"repo_url\": \"https://github.com/microsoft/TypeScript\",\n        \"stars\": 101000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 20,\n        \"name\": \"PowerToys\",\n        \"description\": \"Utilities for power users on Windows.\",\n        \"repo_url\": \"https://github.com/microsoft/PowerToys\",\n        \"stars\": 112000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            8\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
             }
           ]
         },
@@ -1919,7 +1919,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити мейнтейнера «Felix Kling», оскільки за ним закріплено 2 проєкти. Спочатку призначте цим проєктам іншого мейнтейнера.\",\n    \"errors\": null\n}"
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити мейнтейнера «Felix Kling», оскільки за ним закріплено 4 проєкти. Спочатку призначте цим проєктам іншого мейнтейнера.\",\n    \"errors\": null\n}"
             }
           ]
         }
@@ -1983,7 +1983,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Django\",\n        \"description\": \"The web framework for perfectionists with deadlines.\",\n        \"repo_url\": \"https://github.com/django/django\",\n        \"stars\": 81000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1,\n            2\n        ],\n        \"maintainer\": 2,\n        \"organization\": 1\n    },\n    {\n        \"id\": 2,\n        \"name\": \"CPython\",\n        \"description\": \"The Python programming language.\",\n        \"repo_url\": \"https://github.com/python/cpython\",\n        \"stars\": 63000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 3,\n        \"name\": \"PEPs\",\n        \"description\": \"Python Enhancement Proposals.\",\n        \"repo_url\": \"https://github.com/python/peps\",\n        \"stars\": 4300,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Django\",\n        \"description\": \"The web framework for perfectionists with deadlines.\",\n        \"repo_url\": \"https://github.com/django/django\",\n        \"stars\": 81000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1,\n            2\n        ],\n        \"maintainer\": 2,\n        \"organization\": 1\n    },\n    {\n        \"id\": 2,\n        \"name\": \"CPython\",\n        \"description\": \"The Python programming language.\",\n        \"repo_url\": \"https://github.com/python/cpython\",\n        \"stars\": 63000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 3,\n        \"name\": \"PEPs\",\n        \"description\": \"Python Enhancement Proposals.\",\n        \"repo_url\": \"https://github.com/python/peps\",\n        \"stars\": 4300,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 6,\n        \"name\": \"React\",\n        \"description\": \"The library for web and native user interfaces.\",\n        \"repo_url\": \"https://github.com/facebook/react\",\n        \"stars\": 230000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2\n        ],\n        \"maintainer\": 5,\n        \"organization\": 5\n    },\n    {\n        \"id\": 7,\n        \"name\": \"Guava\",\n        \"description\": \"Google core libraries for Java.\",\n        \"repo_url\": \"https://github.com/google/guava\",\n        \"stars\": 50000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            6\n        ],\n        \"maintainer\": 6,\n        \"organization\": 6\n    },\n    {\n        \"id\": 8,\n        \"name\": \"GoogleTest\",\n        \"description\": \"Google testing and mocking framework.\",\n        \"repo_url\": \"https://github.com/google/googletest\",\n        \"stars\": 36000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            7\n        ],\n        \"maintainer\": 6,\n        \"organization\": 6\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Go\",\n        \"description\": \"The Go programming language.\",\n        \"repo_url\": \"https://github.com/golang/go\",\n        \"stars\": 124000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            5\n        ],\n        \"maintainer\": 8,\n        \"organization\": 7\n    },\n    {\n        \"id\": 10,\n        \"name\": \"Rust\",\n        \"description\": \"Empowering everyone to build reliable and efficient software.\",\n        \"repo_url\": \"https://github.com/rust-lang/rust\",\n        \"stars\": 100000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 8,\n        \"organization\": 8\n    },\n    {\n        \"id\": 11,\n        \"name\": \"Rustlings\",\n        \"description\": \"Small exercises to get you used to reading and writing Rust code.\",\n        \"repo_url\": \"https://github.com/rust-lang/rustlings\",\n        \"stars\": 55000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 8,\n        \"organization\": 8\n    },\n    {\n        \"id\": 12,\n        \"name\": \"Next.js\",\n        \"description\": \"The React framework.\",\n        \"repo_url\": \"https://github.com/vercel/next.js\",\n        \"stars\": 128000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 5,\n        \"organization\": 9\n    },\n    {\n        \"id\": 13,\n        \"name\": \"Ruby on Rails\",\n        \"description\": \"Web application framework with everything needed to build database-backed apps.\",\n        \"repo_url\": \"https://github.com/rails/rails\",\n        \"stars\": 56000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            9\n        ],\n        \"maintainer\": 7,\n        \"organization\": 10\n    },\n    {\n        \"id\": 14,\n        \"name\": \"Flutter\",\n        \"description\": \"Build apps for any screen from one codebase.\",\n        \"repo_url\": \"https://github.com/flutter/flutter\",\n        \"stars\": 167000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            11\n        ],\n        \"maintainer\": 7,\n        \"organization\": 11\n    },\n    {\n        \"id\": 15,\n        \"name\": \"Laravel\",\n        \"description\": \"Skeleton application for the Laravel framework.\",\n        \"repo_url\": \"https://github.com/laravel/laravel\",\n        \"stars\": 79000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            10\n        ],\n        \"maintainer\": 7,\n        \"organization\": 12\n    },\n    {\n        \"id\": 16,\n        \"name\": \"freeCodeCamp\",\n        \"description\": \"Open-source curriculum for learning to code.\",\n        \"repo_url\": \"https://github.com/freeCodeCamp/freeCodeCamp\",\n        \"stars\": 400000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 5,\n        \"organization\": 13\n    },\n    {\n        \"id\": 17,\n        \"name\": \"Home Assistant\",\n        \"description\": \"Open source home automation.\",\n        \"repo_url\": \"https://github.com/home-assistant/core\",\n        \"stars\": 75000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 6,\n        \"organization\": 14\n    },\n    {\n        \"id\": 18,\n        \"name\": \"PDF.js\",\n        \"description\": \"PDF reader in JavaScript.\",\n        \"repo_url\": \"https://github.com/mozilla/pdf.js\",\n        \"stars\": 49000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2\n        ],\n        \"maintainer\": 4,\n        \"organization\": 4\n    },\n    {\n        \"id\": 19,\n        \"name\": \"TypeScript\",\n        \"description\": \"JavaScript with syntax for types.\",\n        \"repo_url\": \"https://github.com/microsoft/TypeScript\",\n        \"stars\": 101000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 20,\n        \"name\": \"PowerToys\",\n        \"description\": \"Utilities for power users on Windows.\",\n        \"repo_url\": \"https://github.com/microsoft/PowerToys\",\n        \"stars\": 112000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            8\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 21,\n        \"name\": \"Requests\",\n        \"description\": \"A simple HTTP library for Python.\",\n        \"repo_url\": \"https://github.com/psf/requests\",\n        \"stars\": 52000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 22,\n        \"name\": \"Black\",\n        \"description\": \"The uncompromising Python code formatter.\",\n        \"repo_url\": \"https://github.com/psf/black\",\n        \"stars\": 39000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    }\n]"
             }
           ]
         },
@@ -2062,7 +2062,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 3,\n        \"name\": \"PEPs\",\n        \"description\": \"Python Enhancement Proposals.\",\n        \"repo_url\": \"https://github.com/python/peps\",\n        \"stars\": 4300,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    }\n]"
+              "body": "[\n    {\n        \"id\": 3,\n        \"name\": \"PEPs\",\n        \"description\": \"Python Enhancement Proposals.\",\n        \"repo_url\": \"https://github.com/python/peps\",\n        \"stars\": 4300,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 21,\n        \"name\": \"Requests\",\n        \"description\": \"A simple HTTP library for Python.\",\n        \"repo_url\": \"https://github.com/psf/requests\",\n        \"stars\": 52000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 22,\n        \"name\": \"Black\",\n        \"description\": \"The uncompromising Python code formatter.\",\n        \"repo_url\": \"https://github.com/psf/black\",\n        \"stars\": 39000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    }\n]"
             }
           ]
         },
@@ -2141,7 +2141,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 1,\n        \"name\": \"Django\",\n        \"description\": \"The web framework for perfectionists with deadlines.\",\n        \"repo_url\": \"https://github.com/django/django\",\n        \"stars\": 81000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1,\n            2\n        ],\n        \"maintainer\": 2,\n        \"organization\": 1\n    },\n    {\n        \"id\": 2,\n        \"name\": \"CPython\",\n        \"description\": \"The Python programming language.\",\n        \"repo_url\": \"https://github.com/python/cpython\",\n        \"stars\": 63000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
+              "body": "[\n    {\n        \"id\": 16,\n        \"name\": \"freeCodeCamp\",\n        \"description\": \"Open-source curriculum for learning to code.\",\n        \"repo_url\": \"https://github.com/freeCodeCamp/freeCodeCamp\",\n        \"stars\": 400000,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 5,\n        \"organization\": 13\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Go\",\n        \"description\": \"The Go programming language.\",\n        \"repo_url\": \"https://github.com/golang/go\",\n        \"stars\": 124000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            5\n        ],\n        \"maintainer\": 8,\n        \"organization\": 7\n    },\n    {\n        \"id\": 20,\n        \"name\": \"PowerToys\",\n        \"description\": \"Utilities for power users on Windows.\",\n        \"repo_url\": \"https://github.com/microsoft/PowerToys\",\n        \"stars\": 112000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            8\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 1,\n        \"name\": \"Django\",\n        \"description\": \"The web framework for perfectionists with deadlines.\",\n        \"repo_url\": \"https://github.com/django/django\",\n        \"stars\": 81000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1,\n            2\n        ],\n        \"maintainer\": 2,\n        \"organization\": 1\n    },\n    {\n        \"id\": 17,\n        \"name\": \"Home Assistant\",\n        \"description\": \"Open source home automation.\",\n        \"repo_url\": \"https://github.com/home-assistant/core\",\n        \"stars\": 75000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 6,\n        \"organization\": 14\n    },\n    {\n        \"id\": 2,\n        \"name\": \"CPython\",\n        \"description\": \"The Python programming language.\",\n        \"repo_url\": \"https://github.com/python/cpython\",\n        \"stars\": 63000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 13,\n        \"name\": \"Ruby on Rails\",\n        \"description\": \"Web application framework with everything needed to build database-backed apps.\",\n        \"repo_url\": \"https://github.com/rails/rails\",\n        \"stars\": 56000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            9\n        ],\n        \"maintainer\": 7,\n        \"organization\": 10\n    },\n    {\n        \"id\": 8,\n        \"name\": \"GoogleTest\",\n        \"description\": \"Google testing and mocking framework.\",\n        \"repo_url\": \"https://github.com/google/googletest\",\n        \"stars\": 36000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            7\n        ],\n        \"maintainer\": 6,\n        \"organization\": 6\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
             }
           ]
         },
@@ -2229,7 +2229,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 6,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        6\n    ],\n    \"maintainer\": 5,\n    \"organization\": 5\n}"
+              "body": "{\n    \"id\": 23,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        12\n    ],\n    \"maintainer\": 9,\n    \"organization\": 15\n}"
             }
           ]
         },
@@ -2290,7 +2290,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 6,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        6\n    ],\n    \"maintainer\": 5,\n    \"organization\": 5\n}"
+              "body": "{\n    \"id\": 23,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        12\n    ],\n    \"maintainer\": 9,\n    \"organization\": 15\n}"
             }
           ]
         },
@@ -2379,7 +2379,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 6,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 71000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1\n    ],\n    \"maintainer\": 5,\n    \"organization\": 5\n}"
+              "body": "{\n    \"id\": 23,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 71000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1\n    ],\n    \"maintainer\": 9,\n    \"organization\": 15\n}"
             }
           ]
         },
@@ -3099,7 +3099,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n    {\n        \"id\": 1,\n        \"project\": 1,\n        \"title\": \"Fix typo in tutorial part 2\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 2,\n        \"project\": 1,\n        \"title\": \"Add missing translation strings\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"in_progress\"\n    },\n    {\n        \"id\": 3,\n        \"project\": 2,\n        \"title\": \"Improve error message for unclosed bracket\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 4,\n        \"project\": 3,\n        \"title\": \"Fix broken link in PEP 8\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 5,\n        \"project\": 4,\n        \"title\": \"Update README screenshots\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 6,\n        \"project\": 5,\n        \"title\": \"Add example for clipboard API\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    }\n]"
+              "body": "[\n    {\n        \"id\": 1,\n        \"project\": 1,\n        \"title\": \"Fix typo in tutorial part 2\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 2,\n        \"project\": 1,\n        \"title\": \"Add missing translation strings\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"in_progress\"\n    },\n    {\n        \"id\": 3,\n        \"project\": 2,\n        \"title\": \"Improve error message for unclosed bracket\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 4,\n        \"project\": 3,\n        \"title\": \"Fix broken link in PEP 8\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 5,\n        \"project\": 4,\n        \"title\": \"Update README screenshots\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 6,\n        \"project\": 5,\n        \"title\": \"Add example for clipboard API\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 7,\n        \"project\": 6,\n        \"title\": \"Clarify useEffect cleanup example in docs\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 8,\n        \"project\": 7,\n        \"title\": \"Add Javadoc example for ImmutableList.builder\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 9,\n        \"project\": 9,\n        \"title\": \"Improve error text for unused imports\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"in_progress\"\n    },\n    {\n        \"id\": 10,\n        \"project\": 11,\n        \"title\": \"Add hint for the iterators3 exercise\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 11,\n        \"project\": 11,\n        \"title\": \"Fix typo in the README of the structs section\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 12,\n        \"project\": 12,\n        \"title\": \"Update example with app router\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 13,\n        \"project\": 13,\n        \"title\": \"Document default value of config.time_zone\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 14,\n        \"project\": 15,\n        \"title\": \"Translate validation messages to Ukrainian\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 15,\n        \"project\": 16,\n        \"title\": \"Fix broken link in the JavaScript course\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 16,\n        \"project\": 16,\n        \"title\": \"Add alt text to images in lesson 12\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"in_progress\"\n    },\n    {\n        \"id\": 17,\n        \"project\": 17,\n        \"title\": \"Add unit test for the weather sensor\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 18,\n        \"project\": 18,\n        \"title\": \"Keyboard shortcut list is missing zoom keys\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 19,\n        \"project\": 21,\n        \"title\": \"Add example for timeout parameter\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 20,\n        \"project\": 22,\n        \"title\": \"Add test case for long string concatenation\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    }\n]"
             }
           ]
         },
@@ -3266,7 +3266,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"open\"\n}"
+              "body": "{\n    \"id\": 21,\n    \"project\": 23,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"open\"\n}"
             }
           ]
         },
@@ -3327,7 +3327,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"open\"\n}"
+              "body": "{\n    \"id\": 21,\n    \"project\": 23,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"open\"\n}"
             }
           ]
         },
@@ -3416,7 +3416,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"in_progress\"\n}"
+              "body": "{\n    \"id\": 21,\n    \"project\": 23,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"in_progress\"\n}"
             }
           ]
         },
@@ -3573,7 +3573,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"closed\"\n}"
+              "body": "{\n    \"id\": 21,\n    \"project\": 23,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"closed\"\n}"
             }
           ]
         },
@@ -4012,7 +4012,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"status\": 404,\n    \"detail\": \"Задачу з id=7 не знайдено.\",\n    \"errors\": null\n}"
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Задачу з id=21 не знайдено.\",\n    \"errors\": null\n}"
             }
           ]
         },
@@ -4246,7 +4246,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n    \"status\": 404,\n    \"detail\": \"Проєкт з id=6 не знайдено.\",\n    \"errors\": null\n}"
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Проєкт з id=23 не знайдено.\",\n    \"errors\": null\n}"
             }
           ]
         }
