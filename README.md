@@ -29,6 +29,8 @@ python manage.py runserver
 
 Сервер працює на http://127.0.0.1:8000, API на http://127.0.0.1:8000/api/v1/. CORS дозволений для фронтенду на http://localhost:8001 і http://127.0.0.1:8001.
 
+Фронтенд лежить в окремому репозиторії: https://github.com/zxkeee/rest-api-frontend
+
 ## Postman
 
 Колекція лежить у [postman/rest-api.postman_collection.json](postman/rest-api.postman_collection.json) (формат Collection v2.1). Імпортуй її в Postman через Import. Адреса сервера в змінній колекції `base_url`.
