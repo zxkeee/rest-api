@@ -1,0 +1,4282 @@
+{
+  "info": {
+    "name": "rest-api: каталог open-source проєктів",
+    "description": "Запити до API каталогу open-source проєктів для новачків.\n\nЗапусти бекенд (`python manage.py runserver`) на свіжій базі після `python manage.py migrate` і прожени папки по черзі через Runner. Запити створюють свої обʼєкти, зберігають їх id у змінні колекції, а в папці \"Видалення\" прибирають за собою.\n\nАдреса сервера в змінній `base_url`.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Мови",
+      "item": [
+        {
+          "name": "Список мов",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/languages/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/languages/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Python\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"JavaScript\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"TypeScript\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Rust\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Go\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Додати мову",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "pm.collectionVariables.set('language_id', pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/languages/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Kotlin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/languages/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Kotlin\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 6,\n    \"name\": \"Kotlin\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Одна мова",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/languages/{{language_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                "{{language_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/languages/{{language_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    "{{language_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 6,\n    \"name\": \"Kotlin\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Змінити мову",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/languages/{{language_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                "{{language_id}}",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Kotlin JVM\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/languages/{{language_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    "{{language_id}}",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Kotlin JVM\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 6,\n    \"name\": \"Kotlin JVM\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: мова вже існує",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/languages/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Python\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/languages/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Python\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невалідні дані. Деталі в полі errors.\",\n    \"errors\": {\n        \"name\": [\n            \"language з таким name вже існує.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: мову не знайдено",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/languages/9999/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                "9999",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/languages/9999/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    "9999",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Мову з id=9999 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: видалити мову, яку використовують проєкти",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 409', function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/languages/1/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                "1",
+                ""
+              ]
+            },
+            "description": "Python використовують кілька проєктів, тому видалення заборонене."
+          },
+          "response": [
+            {
+              "name": "409 Conflict",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/languages/1/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    "1",
+                    ""
+                  ]
+                },
+                "description": "Python використовують кілька проєктів, тому видалення заборонене."
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити мову «Python», оскільки її використовують 3 проєкти. Спочатку приберіть цю мову з проєктів.\",\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Організації",
+      "item": [
+        {
+          "name": "Список організацій",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Django Software Foundation\",\n        \"github_url\": \"https://github.com/django\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Python Software Foundation\",\n        \"github_url\": \"https://github.com/python\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Microsoft\",\n        \"github_url\": \"https://github.com/microsoft\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Mozilla\",\n        \"github_url\": \"https://github.com/mozilla\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Пошук організацій",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/?search=python",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "python"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/?search=python",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "python"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 2,\n        \"name\": \"Python Software Foundation\",\n        \"github_url\": \"https://github.com/python\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Додати організацію",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "pm.collectionVariables.set('organization_id', pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/organizations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/organizations/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 5,\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Одна організація",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/{{organization_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                "{{organization_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/{{organization_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "{{organization_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 5,\n    \"name\": \"Pallets\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Змінити організацію",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/organizations/{{organization_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                "{{organization_id}}",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Pallets Projects\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/organizations/{{organization_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "{{organization_id}}",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Pallets Projects\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 5,\n    \"name\": \"Pallets Projects\",\n    \"github_url\": \"https://github.com/pallets\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Проєкти організації",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/1/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                "1",
+                "projects",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/1/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "1",
+                    "projects",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Django\",\n        \"description\": \"The web framework for perfectionists with deadlines.\",\n        \"repo_url\": \"https://github.com/django/django\",\n        \"stars\": 81000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1,\n            2\n        ],\n        \"maintainer\": 2,\n        \"organization\": 1\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: посилання не на GitHub",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/organizations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"GitLab\",\n    \"github_url\": \"https://gitlab.com/gitlab-org\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/organizations/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"GitLab\",\n    \"github_url\": \"https://gitlab.com/gitlab-org\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невалідні дані. Деталі в полі errors.\",\n    \"errors\": {\n        \"github_url\": [\n            \"Посилання має починатися з https://github.com/\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: організацію не знайдено",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/9999/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                "9999",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/9999/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "9999",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Організацію з id=9999 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: проєкти неіснуючої організації",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/9999/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                "9999",
+                "projects",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/9999/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "9999",
+                    "projects",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Організацію з id=9999 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: видалити організацію з проєктами",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 409', function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/3/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                "3",
+                ""
+              ]
+            },
+            "description": "За Microsoft закріплені проєкти, тому видалення заборонене."
+          },
+          "response": [
+            {
+              "name": "409 Conflict",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/3/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "3",
+                    ""
+                  ]
+                },
+                "description": "За Microsoft закріплені проєкти, тому видалення заборонене."
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити організацію «Microsoft», оскільки за нею закріплено 2 проєкти. Спочатку видаліть ці проєкти або перенесіть їх в іншу організацію.\",\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Мейнтейнери",
+      "item": [
+        {
+          "name": "Список мейнтейнерів",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/maintainers/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 1,\n        \"full_name\": \"Felix Kling\",\n        \"github_username\": \"fkling\"\n    },\n    {\n        \"id\": 2,\n        \"full_name\": \"Sarah Boyce\",\n        \"github_username\": \"sarahboyce\"\n    },\n    {\n        \"id\": 3,\n        \"full_name\": \"Hugo van Kemenade\",\n        \"github_username\": \"hugovk\"\n    },\n    {\n        \"id\": 4,\n        \"full_name\": \"Ivan Petrenko\",\n        \"github_username\": \"ivan-petrenko\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Пошук мейнтейнерів",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/maintainers/?search=sarah",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "sarah"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/?search=sarah",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "sarah"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 2,\n        \"full_name\": \"Sarah Boyce\",\n        \"github_username\": \"sarahboyce\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Додати мейнтейнера",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "pm.collectionVariables.set('maintainer_id', pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/maintainers/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 5,\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Один мейнтейнер",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/maintainers/{{maintainer_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                "{{maintainer_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/{{maintainer_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    "{{maintainer_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 5,\n    \"full_name\": \"David Lord\",\n    \"github_username\": \"davidism\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Змінити мейнтейнера",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/maintainers/{{maintainer_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                "{{maintainer_id}}",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"full_name\": \"David Lord Jr.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/{{maintainer_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    "{{maintainer_id}}",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"full_name\": \"David Lord Jr.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 5,\n    \"full_name\": \"David Lord Jr.\",\n    \"github_username\": \"davidism\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Проєкти мейнтейнера",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/maintainers/1/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                "1",
+                "projects",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/1/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    "1",
+                    "projects",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: github_username вже зайнятий",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/maintainers/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"full_name\": \"Sarah B.\",\n    \"github_username\": \"sarahboyce\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"full_name\": \"Sarah B.\",\n    \"github_username\": \"sarahboyce\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невалідні дані. Деталі в полі errors.\",\n    \"errors\": {\n        \"github_username\": [\n            \"maintainer з таким github username вже існує.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: мейнтейнера не знайдено",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/maintainers/9999/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                "9999",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/9999/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    "9999",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Мейнтейнера з id=9999 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: видалити мейнтейнера з проєктами",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 409', function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/maintainers/1/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                "1",
+                ""
+              ]
+            },
+            "description": "За Felix Kling закріплені проєкти, тому видалення заборонене."
+          },
+          "response": [
+            {
+              "name": "409 Conflict",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/1/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    "1",
+                    ""
+                  ]
+                },
+                "description": "За Felix Kling закріплені проєкти, тому видалення заборонене."
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити мейнтейнера «Felix Kling», оскільки за ним закріплено 2 проєкти. Спочатку призначте цим проєктам іншого мейнтейнера.\",\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Проєкти",
+      "item": [
+        {
+          "name": "Список проєктів",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Django\",\n        \"description\": \"The web framework for perfectionists with deadlines.\",\n        \"repo_url\": \"https://github.com/django/django\",\n        \"stars\": 81000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1,\n            2\n        ],\n        \"maintainer\": 2,\n        \"organization\": 1\n    },\n    {\n        \"id\": 2,\n        \"name\": \"CPython\",\n        \"description\": \"The Python programming language.\",\n        \"repo_url\": \"https://github.com/python/cpython\",\n        \"stars\": 63000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 3,\n        \"name\": \"PEPs\",\n        \"description\": \"Python Enhancement Proposals.\",\n        \"repo_url\": \"https://github.com/python/peps\",\n        \"stars\": 4300,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Фільтр за мовою і складністю",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/?language=python&difficulty=beginner",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "language",
+                  "value": "python"
+                },
+                {
+                  "key": "difficulty",
+                  "value": "beginner"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/?language=python&difficulty=beginner",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "python"
+                    },
+                    {
+                      "key": "difficulty",
+                      "value": "beginner"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 3,\n        \"name\": \"PEPs\",\n        \"description\": \"Python Enhancement Proposals.\",\n        \"repo_url\": \"https://github.com/python/peps\",\n        \"stars\": 4300,\n        \"difficulty\": \"beginner\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Пошук і сортування за зірками",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/?search=o&ordering=-stars",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "o"
+                },
+                {
+                  "key": "ordering",
+                  "value": "-stars"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/?search=o&ordering=-stars",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "o"
+                    },
+                    {
+                      "key": "ordering",
+                      "value": "-stars"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 4,\n        \"name\": \"Visual Studio Code\",\n        \"description\": \"Code editor by Microsoft.\",\n        \"repo_url\": \"https://github.com/microsoft/vscode\",\n        \"stars\": 165000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            2,\n            3\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    },\n    {\n        \"id\": 1,\n        \"name\": \"Django\",\n        \"description\": \"The web framework for perfectionists with deadlines.\",\n        \"repo_url\": \"https://github.com/django/django\",\n        \"stars\": 81000,\n        \"difficulty\": \"intermediate\",\n        \"languages\": [\n            1,\n            2\n        ],\n        \"maintainer\": 2,\n        \"organization\": 1\n    },\n    {\n        \"id\": 2,\n        \"name\": \"CPython\",\n        \"description\": \"The Python programming language.\",\n        \"repo_url\": \"https://github.com/python/cpython\",\n        \"stars\": 63000,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            1\n        ],\n        \"maintainer\": 3,\n        \"organization\": 2\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Rust for Windows\",\n        \"description\": \"Rust bindings for Windows APIs.\",\n        \"repo_url\": \"https://github.com/microsoft/windows-rs\",\n        \"stars\": 10500,\n        \"difficulty\": \"advanced\",\n        \"languages\": [\n            4\n        ],\n        \"maintainer\": 1,\n        \"organization\": 3\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Додати проєкт",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "pm.collectionVariables.set('project_id', pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        {{language_id}}\n    ],\n    \"maintainer\": {{maintainer_id}},\n    \"organization\": {{organization_id}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        {{language_id}}\n    ],\n    \"maintainer\": {{maintainer_id}},\n    \"organization\": {{organization_id}}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 6,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        6\n    ],\n    \"maintainer\": 5,\n    \"organization\": 5\n}"
+            }
+          ]
+        },
+        {
+          "name": "Один проєкт",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 6,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 70000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1,\n        6\n    ],\n    \"maintainer\": 5,\n    \"organization\": 5\n}"
+            }
+          ]
+        },
+        {
+          "name": "Змінити проєкт",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"stars\": 71000,\n    \"languages\": [\n        1\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"stars\": 71000,\n    \"languages\": [\n        1\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 6,\n    \"name\": \"Flask\",\n    \"description\": \"The Python micro framework for building web applications.\",\n    \"repo_url\": \"https://github.com/pallets/flask\",\n    \"stars\": 71000,\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1\n    ],\n    \"maintainer\": 5,\n    \"organization\": 5\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: невалідні поля",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Broken\",\n    \"repo_url\": \"https://gitlab.com/broken\",\n    \"stars\": -5,\n    \"difficulty\": \"hard\",\n    \"languages\": [],\n    \"maintainer\": 9999,\n    \"organization\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Broken\",\n    \"repo_url\": \"https://gitlab.com/broken\",\n    \"stars\": -5,\n    \"difficulty\": \"hard\",\n    \"languages\": [],\n    \"maintainer\": 9999,\n    \"organization\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невалідні дані. Деталі в полі errors.\",\n    \"errors\": {\n        \"repo_url\": [\n            \"Посилання має починатися з https://github.com/\"\n        ],\n        \"stars\": [\n            \"Кількість зірок не може бути відʼємною.\"\n        ],\n        \"difficulty\": [\n            \"\\\"hard\\\" не є коректним вибором.\"\n        ],\n        \"languages\": [\n            \"Вкажіть хоча б одну мову програмування.\"\n        ],\n        \"maintainer\": [\n            \"Недопустимий первинний ключ \\\"9999\\\" - об'єкт не існує.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: repo_url вже існує",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Django copy\",\n    \"repo_url\": \"https://github.com/django/django\",\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1\n    ],\n    \"maintainer\": 2,\n    \"organization\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Django copy\",\n    \"repo_url\": \"https://github.com/django/django\",\n    \"difficulty\": \"beginner\",\n    \"languages\": [\n        1\n    ],\n    \"maintainer\": 2,\n    \"organization\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невалідні дані. Деталі в полі errors.\",\n    \"errors\": {\n        \"repo_url\": [\n            \"project з таким repo url вже існує.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: битий JSON",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Broken\",",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\": \"Broken\",",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"JSON parse error - Expecting property name enclosed in double quotes: line 1 column 19 (char 18)\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: невідома складність у фільтрі",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/?difficulty=hard",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "difficulty",
+                  "value": "hard"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/?difficulty=hard",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "difficulty",
+                      "value": "hard"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невідомий рівень складності «hard». Допустимі значення: beginner, intermediate, advanced.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: невідоме сортування",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/?ordering=rating",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "rating"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/?ordering=rating",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "ordering",
+                      "value": "rating"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Неможливо відсортувати за «rating». Допустимі значення: name, -name, stars, -stars.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: PUT не підтримується",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 405', function () {",
+                  "    pm.response.to.have.status(405);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(405);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"stars\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "405 Method Not Allowed",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"stars\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 405,\n    \"detail\": \"Метод \\\"PUT\\\" не дозволений.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: проєкт не знайдено",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/9999/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "9999",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/9999/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "9999",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Проєкт з id=9999 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: видалити проєкт з відкритими задачами",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 409', function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/1/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "1",
+                ""
+              ]
+            },
+            "description": "У Django є задачі зі статусом open та in_progress, тому видалення заборонене."
+          },
+          "response": [
+            {
+              "name": "409 Conflict",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/1/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "1",
+                    ""
+                  ]
+                },
+                "description": "У Django є задачі зі статусом open та in_progress, тому видалення заборонене."
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити проєкт «Django», оскільки він має 2 незакриті задачі. Спочатку закрийте або видаліть їх.\",\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Задачі",
+      "item": [
+        {
+          "name": "Список задач",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/issues/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/issues/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 1,\n        \"project\": 1,\n        \"title\": \"Fix typo in tutorial part 2\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 2,\n        \"project\": 1,\n        \"title\": \"Add missing translation strings\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"in_progress\"\n    },\n    {\n        \"id\": 3,\n        \"project\": 2,\n        \"title\": \"Improve error message for unclosed bracket\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    },\n    {\n        \"id\": 4,\n        \"project\": 3,\n        \"title\": \"Fix broken link in PEP 8\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 5,\n        \"project\": 4,\n        \"title\": \"Update README screenshots\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"closed\"\n    },\n    {\n        \"id\": 6,\n        \"project\": 5,\n        \"title\": \"Add example for clipboard API\",\n        \"difficulty\": \"intermediate\",\n        \"status\": \"open\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Фільтр за статусом і проєктом",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/issues/?status=open&project=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "open"
+                },
+                {
+                  "key": "project",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/issues/?status=open&project=1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "open"
+                    },
+                    {
+                      "key": "project",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n    {\n        \"id\": 1,\n        \"project\": 1,\n        \"title\": \"Fix typo in tutorial part 2\",\n        \"difficulty\": \"beginner\",\n        \"status\": \"open\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Додати задачу",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "pm.collectionVariables.set('issue_id', pm.response.json().id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/issues/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project\": {{project_id}},\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/issues/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"project\": {{project_id}},\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"open\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Одна задача",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/issues/{{issue_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                "{{issue_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/issues/{{issue_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    "{{issue_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"open\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Взяти задачу в роботу",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/issues/{{issue_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                "{{issue_id}}",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"in_progress\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/issues/{{issue_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    "{{issue_id}}",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"status\": \"in_progress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"in_progress\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: видалити проєкт із задачею в роботі",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 409', function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                ""
+              ]
+            },
+            "description": "У щойно створеного проєкту є задача in_progress, тому видалити його ще не можна."
+          },
+          "response": [
+            {
+              "name": "409 Conflict",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    ""
+                  ]
+                },
+                "description": "У щойно створеного проєкту є задача in_progress, тому видалити його ще не можна."
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 409,\n    \"detail\": \"Неможливо видалити проєкт «Flask», оскільки він має 1 незакриту задачу. Спочатку закрийте або видаліть їх.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Закрити задачу",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/issues/{{issue_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                "{{issue_id}}",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"closed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/issues/{{issue_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    "{{issue_id}}",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"status\": \"closed\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"id\": 7,\n    \"project\": 6,\n    \"title\": \"Add type hints to helpers\",\n    \"difficulty\": \"beginner\",\n    \"status\": \"closed\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: задача для неіснуючого проєкту",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/issues/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project\": 9999,\n    \"title\": \"\",\n    \"difficulty\": \"beginner\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/issues/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    ""
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"project\": 9999,\n    \"title\": \"\",\n    \"difficulty\": \"beginner\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невалідні дані. Деталі в полі errors.\",\n    \"errors\": {\n        \"project\": [\n            \"Недопустимий первинний ключ \\\"9999\\\" - об'єкт не існує.\"\n        ],\n        \"title\": [\n            \"Це поле не може бути порожнім.\"\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: невідомий статус у фільтрі",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/issues/?status=done",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "done"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/issues/?status=done",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "done"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Невідомий статус «done». Допустимі значення: open, in_progress, closed.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: project у фільтрі не число",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/issues/?project=abc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "project",
+                  "value": "abc"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "400 Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/issues/?project=abc",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "project",
+                      "value": "abc"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 400,\n    \"detail\": \"Параметр project має бути числом (id проєкту).\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Помилка: задачу не знайдено",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/issues/9999/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                "9999",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/issues/9999/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    "9999",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Задачу з id=9999 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Видалення",
+      "item": [
+        {
+          "name": "Видалити проєкт без відкритих задач",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 204', function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                ""
+              ]
+            },
+            "description": "Задача проєкту закрита, тому проєкт видаляється разом з нею."
+          },
+          "response": [
+            {
+              "name": "204 No Content",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    ""
+                  ]
+                },
+                "description": "Задача проєкту закрита, тому проєкт видаляється разом з нею."
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Задача видалилась разом з проєктом",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/issues/{{issue_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "issues",
+                "{{issue_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/issues/{{issue_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "issues",
+                    "{{issue_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Задачу з id=7 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Видалити мову",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 204', function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/languages/{{language_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "languages",
+                "{{language_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "204 No Content",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/languages/{{language_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "languages",
+                    "{{language_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Видалити організацію",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 204', function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/organizations/{{organization_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "organizations",
+                "{{organization_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "204 No Content",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/organizations/{{organization_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    "{{organization_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Видалити мейнтейнера",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 204', function () {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/maintainers/{{maintainer_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "maintainers",
+                "{{maintainer_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "204 No Content",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/maintainers/{{maintainer_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "maintainers",
+                    "{{maintainer_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Помилка: проєкт вже видалено",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Статус 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "pm.test('Помилка в єдиному форматі', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json).to.have.all.keys('status', 'detail', 'errors');",
+                  "    pm.expect(json.status).to.eql(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/projects/{{project_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "projects",
+                "{{project_id}}",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 Not Found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/projects/{{project_id}}/",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "projects",
+                    "{{project_id}}",
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n    \"status\": 404,\n    \"detail\": \"Проєкт з id=6 не знайдено.\",\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api/v1"
+    },
+    {
+      "key": "language_id",
+      "value": ""
+    },
+    {
+      "key": "organization_id",
+      "value": ""
+    },
+    {
+      "key": "maintainer_id",
+      "value": ""
+    },
+    {
+      "key": "project_id",
+      "value": ""
+    },
+    {
+      "key": "issue_id",
+      "value": ""
+    }
+  ]
+}
