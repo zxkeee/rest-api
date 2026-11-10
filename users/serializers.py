@@ -1,6 +1,7 @@
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -23,16 +24,19 @@ class RegisterSerializer(serializers.Serializer):
     password = serializers.CharField(min_length=8, max_length=128, write_only=True, trim_whitespace=False)
     password_confirm = serializers.CharField(max_length=128, write_only=True, trim_whitespace=False)
 
-    def validate(self, attrs):
-        if attrs['password'] != attrs['password_confirm']:
-            raise serializers.ValidationError({'password_confirm': 'Паролі не збігаються.'})
-        user = User(username=attrs['username'], email=attrs['email'],
-                    first_name=attrs['first_name'], last_name=attrs['last_name'])
+    def validate_password(self, value):
+        fields = ['username', 'email', 'first_name', 'last_name']
+        user = User(**{name: str(self.initial_data.get(name) or '') for name in fields})
         try:
-            password_validation.validate_password(attrs['password'], user)
-        except password_validation.ValidationError as e:
-            raise serializers.ValidationError({'password': list(e.messages)})
-        return attrs
+            password_validation.validate_password(value, user)
+        except DjangoValidationError as e:
+            raise serializers.ValidationError(list(e.messages))
+        return value
+
+    def validate_password_confirm(self, value):
+        if value != self.initial_data.get('password'):
+            raise serializers.ValidationError('Паролі не збігаються.')
+        return value
 
     def create(self, validated_data):
         validated_data.pop('password_confirm')

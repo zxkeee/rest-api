@@ -51,6 +51,11 @@ class RegisterTests(APITestCase):
                 self.assertEqual(response.status_code, 400)
                 self.assertIn(field, response.data['errors'])
 
+    def test_all_errors_at_once(self):
+        data = registration_data(email='olena@', password='12345678', password_confirm='12345679')
+        response = self.client.post(REGISTER_URL, data, format='json')
+        self.assertEqual(set(response.data['errors']), {'email', 'password', 'password_confirm'})
+
     def test_duplicate_email(self):
         self.client.post(REGISTER_URL, registration_data(), format='json')
         response = self.client.post(REGISTER_URL, registration_data(username='olena2', email='OLENA@example.com'), format='json')
