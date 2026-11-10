@@ -5,6 +5,8 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from users.permissions import IsAdminOrReadOnly, IssuePermission
+
 from .errors import error_response, plural
 from .models import DIFFICULTY_CHOICES, ISSUE_STATUS_CHOICES, Issue, Language, Maintainer, Organization, Project
 from .serializers import IssueSerializer, LanguageSerializer, MaintainerSerializer, OrganizationSerializer, ProjectSerializer
@@ -26,6 +28,8 @@ def conflict(detail):
 
 
 class LanguageList(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get(self, request):
         languages = Language.objects.all()
         serializer = LanguageSerializer(languages, many=True)
@@ -40,6 +44,8 @@ class LanguageList(APIView):
 
 
 class LanguageDetail(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Language.objects.get(pk=pk)
@@ -73,6 +79,8 @@ class LanguageDetail(APIView):
 
 
 class OrganizationList(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get(self, request):
         organizations = Organization.objects.all()
         search = request.query_params.get('search')
@@ -90,6 +98,8 @@ class OrganizationList(APIView):
 
 
 class OrganizationDetail(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Organization.objects.get(pk=pk)
@@ -133,6 +143,8 @@ class OrganizationProjects(APIView):
 
 
 class MaintainerList(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get(self, request):
         maintainers = Maintainer.objects.all()
         search = request.query_params.get('search')
@@ -150,6 +162,8 @@ class MaintainerList(APIView):
 
 
 class MaintainerDetail(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Maintainer.objects.get(pk=pk)
@@ -193,6 +207,8 @@ class MaintainerProjects(APIView):
 
 
 class ProjectList(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get(self, request):
         projects = Project.objects.all()
         search = request.query_params.get('search')
@@ -229,6 +245,8 @@ class ProjectList(APIView):
 
 
 class ProjectDetail(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Project.objects.get(pk=pk)
@@ -262,6 +280,8 @@ class ProjectDetail(APIView):
 
 
 class IssueList(APIView):
+    permission_classes = [IssuePermission]
+
     def get(self, request):
         issues = Issue.objects.all()
         difficulty = request.query_params.get('difficulty')
@@ -297,6 +317,8 @@ class IssueList(APIView):
 
 
 class IssueDetail(APIView):
+    permission_classes = [IssuePermission]
+
     def get_object(self, pk):
         try:
             return Issue.objects.get(pk=pk)

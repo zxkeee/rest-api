@@ -1,5 +1,7 @@
+from rest_framework.exceptions import NotAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import exception_handler
+from rest_framework_simplejwt.exceptions import InvalidToken
 
 
 def error_response(status_code, detail, errors=None):
@@ -10,7 +12,13 @@ def custom_exception_handler(exc, context):
     response = exception_handler(exc, context)
     if response is None:
         return None
-    if isinstance(response.data, dict) and 'detail' in response.data:
+    if isinstance(exc, NotAuthenticated):
+        detail = 'Потрібна авторизація. Передайте access токен у заголовку Authorization: Bearer <token>.'
+        errors = None
+    elif isinstance(exc, InvalidToken):
+        detail = 'Токен недійсний або прострочений.'
+        errors = None
+    elif isinstance(response.data, dict) and 'detail' in response.data:
         detail = str(response.data['detail'])
         errors = None
     else:
