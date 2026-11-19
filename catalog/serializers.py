@@ -55,3 +55,9 @@ class IssueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Issue
         fields = ['id', 'project', 'title', 'difficulty', 'status']
+
+
+class ErrorSerializer(serializers.Serializer):
+    status = serializers.IntegerField()
+    detail = serializers.CharField()
+    errors = serializers.DictField(allow_null=True)

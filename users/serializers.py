@@ -50,7 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'role']
 
-    def get_role(self, user):
+    def get_role(self, user) -> str:
         return 'admin' if user.is_staff else 'user'
 
 
