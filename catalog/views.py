@@ -35,9 +35,14 @@ def save(serializer, request, code=status.HTTP_200_OK):
 
 
 def destroy(obj, request):
-    logger.info('%s id=%s deleted by user id=%s', type(obj).__name__, obj.pk, request.user.pk)
+    name, pk = type(obj).__name__, obj.pk
     obj.delete()
+    logger.info('%s id=%s deleted by user id=%s', name, pk, request.user.pk)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+def error(description):
+    return OpenApiResponse(ErrorSerializer, description=description)
 
 
 def conflict(detail):
@@ -213,7 +218,15 @@ class ProjectList(APIView):
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = ProjectSerializer
 
-    @extend_schema(responses=ProjectSerializer(many=True))
+    @extend_schema(
+        parameters=[
+            OpenApiParameter('search', description='Пошук за назвою'),
+            OpenApiParameter('language', description='Назва мови, без урахування регістру'),
+            OpenApiParameter('difficulty', enum=DIFFICULTIES),
+            OpenApiParameter('ordering', enum=PROJECT_ORDERING),
+        ],
+        responses={200: ProjectSerializer(many=True), 400: error('Невідоме значення фільтра')},
+    )
     def get(self, request):
         projects = Project.objects.all()
         search = request.query_params.get('search')
@@ -275,10 +288,6 @@ class ProjectDetail(APIView):
         return destroy(project, request)
 
 
-def error(description):
-    return OpenApiResponse(ErrorSerializer, description=description)
-
-
 ISSUE_EXAMPLE = OpenApiExample(
     'Задача',
     value={'project': 1, 'title': 'Add type hints to utils', 'difficulty': 'beginner', 'status': 'open'},
@@ -319,7 +328,7 @@ class IssueList(APIView):
                 status.HTTP_400_BAD_REQUEST,
                 f'Невідомий статус «{issue_status}». Допустимі значення: {", ".join(ISSUE_STATUSES)}.',
             )
-        if project and not project.isdigit():
+        if project and not (project.isascii() and project.isdigit() and len(project) < 10):
             return error_response(status.HTTP_400_BAD_REQUEST, 'Параметр project має бути числом (id проєкту).')
         if difficulty:
             issues = issues.filter(difficulty=difficulty)

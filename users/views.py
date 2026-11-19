@@ -2,7 +2,6 @@ import logging
 
 from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import serializers, status
-from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,6 +10,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from catalog.errors import error_response
+from catalog.serializers import ErrorSerializer
 
 from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
 
@@ -23,7 +23,7 @@ class RegisterView(APIView):
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
 
-    @extend_schema(responses={201: UserSerializer})
+    @extend_schema(responses={201: UserSerializer, 400: ErrorSerializer})
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if not serializer.is_valid():
@@ -34,17 +34,14 @@ class RegisterView(APIView):
         return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
 
 
+@extend_schema(
+    responses={
+        200: inline_serializer('TokenPair', {'access': serializers.CharField(), 'refresh': serializers.CharField()}),
+        401: ErrorSerializer,
+    },
+)
 class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
-
-    def post(self, request, *args, **kwargs):
-        try:
-            response = super().post(request, *args, **kwargs)
-        except AuthenticationFailed:
-            logger.warning('Failed login for username=%r', request.data.get('username'))
-            raise
-        logger.info('User %r logged in', request.data.get('username'))
-        return response
 
 
 class LogoutView(APIView):
@@ -52,7 +49,7 @@ class LogoutView(APIView):
 
     @extend_schema(
         request=inline_serializer('LogoutRequest', {'refresh': serializers.CharField()}),
-        responses={205: None},
+        responses={205: None, 400: ErrorSerializer, 401: ErrorSerializer},
     )
     def post(self, request):
         refresh = request.data.get('refresh')

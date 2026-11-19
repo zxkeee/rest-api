@@ -9,27 +9,28 @@ def issue_url(pk):
     return f'{ISSUES}{pk}/'
 
 
-def test_anonymous_can_list_and_filter(client, issue):
-    response = client.get(ISSUES, {'project': issue.project_id, 'status': 'open'})
+def test_anonymous_can_list_and_filter(api_client, issue):
+    params = {'project': issue.project_id, 'status': 'open', 'difficulty': 'beginner'}
+    response = api_client.get(ISSUES, params)
     assert response.status_code == 200
     assert [item['id'] for item in response.data] == [issue.id]
 
 
-@pytest.mark.parametrize('params', [{'difficulty': 'expert'}, {'status': 'done'}, {'project': 'abc'}])
-def test_list_rejects_bad_filters(client, db, params):
-    response = client.get(ISSUES, params)
+@pytest.mark.parametrize('params', [{'difficulty': 'expert'}, {'status': 'done'}, {'project': 'abc'}, {'project': '²'}])
+def test_list_rejects_bad_filters(api_client, db, params):
+    response = api_client.get(ISSUES, params)
     assert response.status_code == 400
     assert response.data['status'] == 400
 
 
-def test_get_issue(client, issue):
-    response = client.get(issue_url(issue.id))
+def test_get_issue(api_client, issue):
+    response = api_client.get(issue_url(issue.id))
     assert response.status_code == 200
     assert response.data['title'] == 'Fix typo'
 
 
-def test_get_missing_issue(client, db):
-    response = client.get(issue_url(999999))
+def test_get_missing_issue(api_client, db):
+    response = api_client.get(issue_url(999999))
     assert response.status_code == 404
     assert response.data['detail'] == 'Задачу з id=999999 не знайдено.'
 
@@ -49,14 +50,14 @@ def test_create_issue_with_invalid_data(user_client, db):
     assert set(response.data['errors']) == {'project', 'title', 'difficulty'}
 
 
-def test_anonymous_cannot_create_issue(client, project):
-    response = client.post(ISSUES, {'project': project.id, 'title': 'X', 'difficulty': 'beginner'}, format='json')
+def test_anonymous_cannot_create_issue(api_client, project):
+    response = api_client.post(ISSUES, {'project': project.id, 'title': 'X', 'difficulty': 'beginner'}, format='json')
     assert response.status_code == 401
 
 
-def test_invalid_token(client, db):
-    client.credentials(HTTP_AUTHORIZATION='Bearer broken')
-    response = client.post(ISSUES, {}, format='json')
+def test_invalid_token(api_client, db):
+    api_client.credentials(HTTP_AUTHORIZATION='Bearer broken')
+    response = api_client.post(ISSUES, {}, format='json')
     assert response.status_code == 401
     assert response.data['detail'] == 'Токен недійсний або прострочений.'
 
@@ -74,8 +75,8 @@ def test_update_with_invalid_status(user_client, issue):
     assert 'status' in response.data['errors']
 
 
-def test_anonymous_cannot_update(client, issue):
-    assert client.patch(issue_url(issue.id), {'status': 'closed'}, format='json').status_code == 401
+def test_anonymous_cannot_update(api_client, issue):
+    assert api_client.patch(issue_url(issue.id), {'status': 'closed'}, format='json').status_code == 401
 
 
 def test_update_missing_issue(user_client, db):
@@ -114,6 +115,17 @@ def test_project_with_closed_issues_can_be_deleted(admin_client, issue):
     assert not Issue.objects.filter(id=issue.id).exists()
 
 
-def test_schema_and_docs_are_available(client, db):
-    assert client.get('/api/schema/').status_code == 200
-    assert client.get('/api/docs/').status_code == 200
+def test_schema_and_docs_are_available(api_client, db):
+    assert api_client.get('/api/schema/').status_code == 200
+    assert api_client.get('/api/docs/').status_code == 200
+
+
+def test_login_logs_have_no_secrets(api_client, user, caplog):
+    caplog.set_level('INFO')
+    login = '/api/v1/auth/login/'
+    api_client.post(login, {'username': 'olena', 'password': 'wrong-pass'}, format='json')
+    tokens = api_client.post(login, {'username': 'olena', 'password': 'Kv1tka-na-vikni'}, format='json').data
+    assert 'Failed login attempt' in caplog.text
+    assert f'User id={user.id} logged in' in caplog.text
+    for secret in ['wrong-pass', 'Kv1tka-na-vikni', 'olena', tokens['access']]:
+        assert secret not in caplog.text

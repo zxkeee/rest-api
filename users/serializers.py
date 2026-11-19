@@ -1,10 +1,15 @@
+import logging
+
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+logger = logging.getLogger(__name__)
 
 
 class RegisterSerializer(serializers.Serializer):
@@ -58,3 +63,12 @@ class LoginSerializer(TokenObtainPairSerializer):
     default_error_messages = {
         'no_active_account': 'Неправильний username або пароль.',
     }
+
+    def validate(self, attrs):
+        try:
+            data = super().validate(attrs)
+        except AuthenticationFailed:
+            logger.warning('Failed login attempt')
+            raise
+        logger.info('User id=%s logged in', self.user.pk)
+        return data

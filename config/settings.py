@@ -163,6 +163,8 @@ SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
 }
 
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO').upper()
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -173,7 +175,8 @@ LOGGING = {
         'console': {'class': 'logging.StreamHandler', 'formatter': 'simple'},
     },
     'loggers': {
-        'catalog': {'handlers': ['console'], 'level': os.getenv('LOG_LEVEL', 'INFO')},
-        'users': {'handlers': ['console'], 'level': os.getenv('LOG_LEVEL', 'INFO')},
+        'django': {'handlers': ['console'], 'level': 'ERROR'},
+        'catalog': {'handlers': ['console'], 'level': LOG_LEVEL},
+        'users': {'handlers': ['console'], 'level': LOG_LEVEL},
     },
 }

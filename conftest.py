@@ -6,7 +6,7 @@ from catalog.models import Issue, Language, Maintainer, Organization, Project
 
 
 @pytest.fixture
-def client():
+def api_client():
     return APIClient()
 
 
@@ -21,13 +21,15 @@ def admin(db):
 
 
 @pytest.fixture
-def user_client(client, user):
+def user_client(user):
+    client = APIClient()
     client.force_authenticate(user)
     return client
 
 
 @pytest.fixture
-def admin_client(client, admin):
+def admin_client(admin):
+    client = APIClient()
     client.force_authenticate(admin)
     return client
 
