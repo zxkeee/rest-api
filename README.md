@@ -18,9 +18,70 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-У `.env` впиши свій `SECRET_KEY`. `ACCESS_TOKEN_MINUTES` задає, скільки живе access токен (за замовчуванням 5 хвилин). `migrate` одразу заповнює базу тестовими даними. `createsuperuser` створює адміна, без нього не вийде нічого додати чи видалити в каталозі.
+`migrate` одразу заповнює базу тестовими даними. `createsuperuser` створює адміна, без нього не вийде нічого додати чи видалити в каталозі.
 
 Бекенд: http://127.0.0.1:8000, фронтенд має бути на порту 8001 (для нього налаштований CORS).
+
+### Змінні середовища
+
+Налаштування читаються з `.env` через `python-dotenv`. Файл `.env` у `.gitignore`, у репозиторії лежить тільки `.env.example` із заглушками.
+
+| Змінна | Що задає | За замовчуванням |
+|---|---|---|
+| `SECRET_KEY` | секретний ключ Django, обовʼязковий | немає |
+| `DEBUG` | режим налагодження, `True` або `False` | `True` |
+| `ALLOWED_HOSTS` | хости через кому | `localhost,127.0.0.1` |
+| `CORS_ORIGINS` | адреси фронтенду через кому | `http://localhost:8001,http://127.0.0.1:8001` |
+| `ACCESS_TOKEN_MINUTES` | скільки хвилин живе access токен | `5` |
+| `LOG_LEVEL` | рівень логів: `DEBUG`, `INFO`, `WARNING`, `ERROR` | `INFO` |
+
+Згенерувати ключ можна так:
+
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+```
+
+## Тести
+
+Тести на pytest з `pytest-django`, фікстури лежать у `conftest.py`. Залежності для тестів уже є в `requirements.txt`, а `.env` потрібен, бо без `SECRET_KEY` Django не стартує.
+
+```bash
+pytest
+```
+
+З покриттям:
+
+```bash
+pytest --cov --cov-report=term
+```
+
+HTML-звіт: `pytest --cov --cov-report=html`, потім відкрий `htmlcov/index.html`.
+
+`catalog/tests.py` перевіряє задачі (`/api/v1/issues/`): список і фільтри, створення, зміну і видалення для гостя, користувача і адміна, невалідні дані, неіснуючі id, битий токен. Ще там видалення проєкту, яке залежить від статусу його задач (409 або 204). `users/tests.py` перевіряє реєстрацію, токени і права.
+
+## Документація API
+
+- Swagger UI: http://127.0.0.1:8000/api/docs/
+- ReDoc: http://127.0.0.1:8000/api/redoc/
+- OpenAPI-схема (YAML): http://127.0.0.1:8000/api/schema/, у JSON: `/api/schema/?format=json`
+
+Схема генерується автоматично через `drf-spectacular`. Зберегти її у файл:
+
+```bash
+python manage.py spectacular --file schema.yaml
+```
+
+Найдокладніше описані задачі: параметри фільтрів, тіла запитів з прикладами, коди 400/401/403/404 і формат помилки. Щоб викликати закриті ендпоінти у Swagger, натисни Authorize і встав access токен з `/api/v1/auth/login/`.
+
+## Логи
+
+Логи пишуться в консоль у форматі `час рівень модуль: повідомлення`. Рівень задає `LOG_LEVEL`.
+
+- `INFO` - створення, зміна і видалення обʼєктів (тип, id, id користувача), реєстрація і вхід (id користувача), вихід, відхилена валідація (тільки назви полів)
+- `WARNING` - невдалий вхід (без логіна і пароля), вихід з недійсним токеном, конфлікти 409
+- `ERROR` - помилки 500 з traceback (логер `django`)
+
+Паролі, токени, логіни і email у логи не потрапляють. Це перевіряє тест `test_login_logs_have_no_secrets`.
 
 ## API
 

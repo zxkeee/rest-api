@@ -29,9 +29,9 @@ load_dotenv(BASE_DIR / '.env')
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+    'drf_spectacular',
     'corsheaders',
     'catalog',
     'users',
@@ -138,13 +139,11 @@ MAILERS = {
     },
 }
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8001',
-    'http://127.0.0.1:8001',
-]
+CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGINS', 'http://localhost:8001,http://127.0.0.1:8001').split(',')
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'catalog.errors.custom_exception_handler',
+    'DEFAULT_SCHEMA_CLASS': 'catalog.schema.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
@@ -155,4 +154,29 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Open Source Catalog API',
+    'DESCRIPTION': 'Каталог open-source проєктів і задач для новачків.',
+    'VERSION': '1.0.0',
+    'COMPONENT_SPLIT_REQUEST': True,
+}
+
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO').upper()
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {'format': '{asctime} {levelname} {name}: {message}', 'style': '{'},
+    },
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler', 'formatter': 'simple'},
+    },
+    'loggers': {
+        'django': {'handlers': ['console'], 'level': 'ERROR'},
+        'catalog': {'handlers': ['console'], 'level': LOG_LEVEL},
+        'users': {'handlers': ['console'], 'level': LOG_LEVEL},
+    },
 }
